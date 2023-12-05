@@ -1,4 +1,3 @@
-
 fn main() {
     println!("\n");
     // Memory Heavy Clone Method
@@ -26,15 +25,28 @@ fn main() {
     let _s3 = takes_and_gives_back(_s2);
     println!("String 1:{} \nString 3:{}", _s1, _s3);
     println!("\n");
-    
+
     // Not giving Ownership Part-1(Tuples)
 
     let s1 = String::from("Krishna");
-    let (s2,len) = calculate_length(s1);
+    let (s2, len) = calculate_length(s1);
 
-    println!("The length of {} is {}",s2,len);
+    println!("The length of {} is {}", s2, len);
+    println!("\n");
 
+    // Not giving Ownership Part-2(References)
 
+    let s1 = String::from("Saksham");
+    let len = calculate_length_ref(&s1);
+
+    println!("The length of {} is {}", s1, len);
+    println!("\n");
+
+    // Mutable References
+    let mut s = String::from("Jai");
+    change(&mut s);
+    println!("The value of s is {}", s);
+    println!("\n");
 }
 
 fn clone_method() {
@@ -71,7 +83,16 @@ fn takes_and_gives_back(a_string: String) -> String {
 }
 // Not giving Ownership Part-1(Tuples)
 
-fn calculate_length(s:String) -> (String,usize){
+fn calculate_length(s: String) -> (String, usize) {
     let len = s.len();
-    (s,len)
+    (s, len)
+}
+
+fn calculate_length_ref(s: &String) -> usize {
+    s.len()
+}
+
+// Mutable References Function Call
+fn change(some_str: &mut String) {
+    some_str.push_str(" Shree Ram");
 }
